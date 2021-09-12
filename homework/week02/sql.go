@@ -35,6 +35,9 @@ func main() {
 		fmt.Printf("!!! OPEN DATABASE ERROR, err: %v\n", err)
 		panic(err)
 	}
+
+	defer db.Close()
+
 	db.SetConnMaxLifetime(100 * time.Second)
 	db.SetMaxOpenConns(100)
 	db.SetMaxIdleConns(16)
