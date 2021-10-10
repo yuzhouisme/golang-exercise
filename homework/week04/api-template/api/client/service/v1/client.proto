@@ -1,0 +1,148 @@
+syntax = "proto3";
+
+package client.service.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "api/client/service/v1;v1";
+
+service Client {
+  rpc GetClient (GetClientReq) returns (GetClientReply) {
+    option (google.api.http) = {
+      get: "/clients/v1/{id}"
+    };
+  }
+
+  rpc CreateClient (CreateClientReq) returns (CreateClientReply) {
+    option (google.api.http) = {
+      post: "/clients/v1"
+      body: "*"
+    };
+  }
+
+  rpc UpdateClient (UpdateClientReq) returns (UpdateClientReply) {
+    option (google.api.http) = {
+      put: "/clients/v1/{id}"
+      body: "*"
+    };
+  }
+
+  rpc ListClient (ListClientReq) returns (ListClientReply) {
+    option (google.api.http) = {
+      get: "/clients/v1"
+    };
+  }
+
+  rpc DeleteClient (DeleteClientReq) returns (DeleteClientReply) {
+    option (google.api.http) = {
+      delete: "/clients/v1"
+    };
+  }
+
+  rpc SearchClient (SearchClientReq) returns (SearchClientReply) {
+    option (google.api.http) = {
+      get: "/clients/v1/search"
+    };
+  }
+}
+
+message GetClientReq {
+  string id = 1;
+}
+
+message GetClientReply {
+  string id = 1;
+  string business_name = 2;
+  string address = 3;
+  string phone = 4;
+  string role_type = 5;
+  string valid = 6;
+  string remark = 7;
+}
+
+message CreateClientReq {
+  string business_name = 1;
+  string address = 2;
+  string phone = 3;
+  string role_type = 4;
+  string valid = 5;
+  string remark = 6;
+}
+
+message CreateClientReply {
+  string id = 1;
+  string business_name = 2;
+  string address = 3;
+  string phone = 4;
+  string role_type = 5;
+  string valid = 6;
+  string remark = 7;
+}
+
+message UpdateClientReq {
+  string id = 1;
+  string business_name = 2;
+  string address = 3;
+  string phone = 4;
+  string role_type = 5;
+  string valid = 6;
+  string remark = 7;
+}
+
+message UpdateClientReply {
+  string id = 1;
+  string business_name = 2;
+  string address = 3;
+  string phone = 4;
+  string role_type = 5;
+  string valid = 6;
+  string remark = 7;
+}
+
+message ListClientReq {
+  int64 page_num = 1;
+  int64 page_size = 2;
+}
+
+message ListClientReply {
+  message Client {
+    string id = 1;
+    string business_name = 2;
+    string address = 3;
+    string phone = 4;
+    string role_type = 5;
+    string valid = 6;
+    string remark = 7;
+  }
+  repeated Client clients = 1;
+}
+
+message SearchClientReq {
+  string business_name = 1;
+  string role_type = 2;
+  string valid = 3;
+  int64 page_num = 4;
+  int64 page_size = 5;
+  repeated string sort = 6;
+}
+
+message SearchClientReply {
+  message Client {
+    string id = 1;
+    string business_name = 2;
+    string address = 3;
+    string phone = 4;
+    string role_type = 5;
+    string valid = 6;
+    string remark = 7;
+  }
+  repeated Client results = 1;
+}
+
+message DeleteClientReq {
+  int64 id = 1;
+}
+
+message DeleteClientReply {
+
+}
